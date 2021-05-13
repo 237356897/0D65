@@ -199,12 +199,12 @@ namespace P072G3A_FuncTest
 
         private void ASave_Click(object sender, EventArgs e)
         {
-
+            ImageSitA.SaveCaptureImage();
         }
 
         private void BSave_Click(object sender, EventArgs e)
         {
-
+            ImageSitB.SaveCaptureImage();
         }
 
         public void ResetAndStopCamera()

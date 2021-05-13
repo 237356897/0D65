@@ -17,6 +17,8 @@ namespace Image_Sitenamespace
         [DllImport(str_dll_file, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TestDesayImageDll")]
         public static extern void TestDesayImageDll();
 
+        [DllImport(str_dll_file, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SaveCaptureImage")]
+        public static extern void SaveCaptureImage();
 
         [DllImport(str_dll_file, CallingConvention = CallingConvention.Cdecl, EntryPoint = "ExitDesayImageDlg")]
         public static extern void ExitDesayImageDlg();
