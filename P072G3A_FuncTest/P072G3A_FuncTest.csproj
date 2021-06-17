@@ -146,6 +146,12 @@
     <Compile Include="FrmMES.Designer.cs">
       <DependentUpon>FrmMES.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form\frmYield.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\frmYield.Designer.cs">
+      <DependentUpon>frmYield.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service References\ServiceReference1\Reference.cs">
@@ -176,6 +182,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\frmSystemSetting.resx">
       <DependentUpon>frmSystemSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\frmYield.resx">
+      <DependentUpon>frmYield.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
@@ -309,6 +318,7 @@
     <None Include="Resources\MB_WMP_64px_559727_easyicon.net.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\统计.png" />
     <None Include="Resources\手动同步.png" />
     <None Include="Resources\网络.png" />
     <None Include="Resources\接收.png" />

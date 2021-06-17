@@ -1276,8 +1276,12 @@ namespace P072G3A_FuncTest
         #region UI界面更新
         private void tbtnClear_Click(object sender, EventArgs e)
         {
+            //提示
             frmhome.ProductionReset();
+            //总数,OK,NG清零
             productCount(null);
+            //不良率清零
+            frmhome.ClearAllData();
         }
 
         private void productCount(bool? isOK)
@@ -1600,11 +1604,40 @@ namespace P072G3A_FuncTest
                                 if (!bLeftResult)
                                 {
                                     leftSZErrorCode = ("Dark error");
-                                }
+                                    if (bLeftTotalResult)
+                                    {
+                                        Position.Instance.ItemCount.bBlackEN++;
+                                    }                                    
+                                } 
                                 appendText("左工位：黑场测试结束");
                                 bLeftTotalResult = bLeftTotalResult & bLeftResult;
                                 changePicBoxImg("BlackPicBoxA", bLeftResult);
                             }
+                            if ((bLeftTotalResult || Position.Instance.testItem.bAllTestEN) && Position.Instance.testItem.bInfraredDarkEN)
+                            {
+                                appendText("左工位：打开红外灯");
+                                ImageSitA.IR_LED_ON();
+                                Thread.Sleep(500);
+                                StringBuilder buf = new StringBuilder(6072);//指定的buf大小必须大于传入的字符长度
+                                bLeftResult = ImageSitA.DesayTestDark_LedLight(buf);
+                                Thread.Sleep(500);
+                                string strout = buf.ToString();
+                                appendText(strout);
+                                appendText("左工位：关闭红外灯");
+                                ImageSitA.IR_LED_OFF();
+                                if (!bLeftResult)
+                                {
+                                    leftSZErrorCode = ("Infrared_Dark error");
+                                    if (bLeftTotalResult)
+                                    {
+                                        Position.Instance.ItemCount.bInfraredDarkEN++;
+                                    }
+                                }
+                                appendText("左工位：黑场红外亮度测试结束");
+                                bLeftTotalResult = bLeftTotalResult & bLeftResult;
+                                changePicBoxImg("InfraredDarkPicBoxA", bLeftResult);                                
+                            }
+                            appendText("左工位：黑场测试结束");
                             leftTestProcess = 60;
                             break;
 
@@ -1700,6 +1733,10 @@ namespace P072G3A_FuncTest
                                     if (!bLeftResult)
                                     {
                                         leftSZErrorCode = ("WB Error");
+                                        if (bLeftTotalResult)
+                                        {
+                                            Position.Instance.ItemCount.bWBEN++;
+                                        }
                                     }
                                     appendText("左工位：WB测试结束");
                                     bLeftTotalResult = bLeftTotalResult & bLeftResult;
@@ -1715,6 +1752,10 @@ namespace P072G3A_FuncTest
                                     if (!bLeftResult)
                                     {
                                         leftSZErrorCode = ("Shading Error");
+                                        if (bLeftTotalResult)
+                                        {
+                                            Position.Instance.ItemCount.bShadingEN++;
+                                        }
                                     }
                                     appendText("左工位：Shading测试结束");
                                     bLeftTotalResult = bLeftTotalResult & bLeftResult;
@@ -1730,6 +1771,10 @@ namespace P072G3A_FuncTest
                                     if (!bLeftResult)
                                     {
                                         leftSZErrorCode = ("Blemish Error");
+                                        if (bLeftTotalResult)
+                                        {
+                                            Position.Instance.ItemCount.bBlemishEN++;
+                                        }
                                     }
                                     appendText("左工位：Blemish测试结束");
                                     bLeftTotalResult = bLeftTotalResult & bLeftResult;
@@ -1745,6 +1790,10 @@ namespace P072G3A_FuncTest
                                     if (!bLeftResult)
                                     {
                                         leftSZErrorCode = ("BadPixel Error");
+                                        if (bLeftTotalResult)
+                                        {
+                                            Position.Instance.ItemCount.bBadPixelEN++;
+                                        }
                                     }
                                     appendText("左工位：BadPixel测试结束");
                                     bLeftTotalResult = bLeftTotalResult & bLeftResult;
@@ -1760,6 +1809,10 @@ namespace P072G3A_FuncTest
                                     if (!bLeftResult)
                                     {
                                         leftSZErrorCode = ("HotPixel Error");
+                                        if (bLeftTotalResult)
+                                        {
+                                            Position.Instance.ItemCount.bHotPixelEN++;
+                                        }
                                     }
                                     appendText("左工位：HotPixel测试结束");
                                     bLeftTotalResult = bLeftTotalResult & bLeftResult;
@@ -1854,6 +1907,10 @@ namespace P072G3A_FuncTest
                                         if (!bLeftResult)
                                         {
                                             leftSZErrorCode = ("MTF Error");
+                                            if (bLeftTotalResult)
+                                            {
+                                                Position.Instance.ItemCount.bMTFEN++;
+                                            }
                                         }
                                         appendText("左工位：MTF测试结束");
                                         bLeftTotalResult = bLeftTotalResult & bLeftResult;
@@ -1869,6 +1926,10 @@ namespace P072G3A_FuncTest
                                         if (!bLeftResult)
                                         {
                                             leftSZErrorCode = ("IRMTF Error");
+                                            if (bLeftTotalResult)
+                                            {
+                                                Position.Instance.ItemCount.bIRMTFEN++;
+                                            }
                                         }
                                         appendText("左工位：IRMTF测试结束");
                                         bLeftTotalResult = bLeftTotalResult & bLeftResult;
@@ -1895,17 +1956,30 @@ namespace P072G3A_FuncTest
                                                 leftSZErrorCode = ("Color Error");
                                                 changePicBoxImg("ColorPicBoxA", false);
                                                 changePicBoxImg("GrayPicBoxA", true);
+                                                if (bLeftTotalResult)
+                                                {
+                                                    Position.Instance.ItemCount.bColorEN++;
+                                                }
                                             }
                                             else if (result == 2)
                                             {
                                                 leftSZErrorCode = ("Gray Error");
                                                 changePicBoxImg("GrayPicBoxA", false);
                                                 changePicBoxImg("ColorPicBoxA", true);
+                                                if (bLeftTotalResult)
+                                                {
+                                                    Position.Instance.ItemCount.bGrayEN++;
+                                                }
                                             }
                                             else
                                             {
                                                 changePicBoxImg("ColorPicBoxA", false);
                                                 changePicBoxImg("GrayPicBoxA", false);
+                                                if (bLeftTotalResult)
+                                                {
+                                                    Position.Instance.ItemCount.bColorEN++;
+                                                    Position.Instance.ItemCount.bGrayEN++;
+                                                }
                                             }
                                         }
                                         appendText("左工位：Color/Gray测试结束");
@@ -1922,6 +1996,10 @@ namespace P072G3A_FuncTest
                                         if (!bLeftResult)
                                         {
                                             leftSZErrorCode = ("FOV Error");
+                                            if (bLeftTotalResult)
+                                            {
+                                                Position.Instance.ItemCount.bFOVEN++;
+                                            }
                                         }
                                         appendText("左工位：FOV测试结束");
                                         bLeftTotalResult = bLeftTotalResult & bLeftResult;
@@ -1937,6 +2015,10 @@ namespace P072G3A_FuncTest
                                         if (!bLeftResult)
                                         {
                                             leftSZErrorCode = ("Aligment Error");
+                                            if (bLeftTotalResult)
+                                            {
+                                                Position.Instance.ItemCount.bAlignmentEN++;
+                                            }
                                         }
                                         appendText("左工位：Aligment测试结束");
                                         bLeftTotalResult = bLeftTotalResult & bLeftResult;
@@ -1952,6 +2034,10 @@ namespace P072G3A_FuncTest
                                         if (!bLeftResult)
                                         {
                                             leftSZErrorCode = ("Distortion Error");
+                                            if (bLeftTotalResult)
+                                            {
+                                                Position.Instance.ItemCount.bDistortionEN++;
+                                            }
                                         }
                                         appendText("左工位：Distortion测试结束");
                                         bLeftTotalResult = bLeftTotalResult & bLeftResult;
@@ -1967,6 +2053,10 @@ namespace P072G3A_FuncTest
                                         if (!bLeftResult)
                                         {
                                             leftSZErrorCode = ("SNR Error");
+                                            if (bLeftTotalResult)
+                                            {
+                                                Position.Instance.ItemCount.bSNREN++;
+                                            }
                                         }
                                         appendText("左工位：SNR测试结束");
                                         bLeftTotalResult = bLeftTotalResult & bLeftResult;
@@ -1982,6 +2072,10 @@ namespace P072G3A_FuncTest
                                         if (!bLeftResult)
                                         {
                                             leftSZErrorCode = ("Rotation Error");
+                                            if (bLeftTotalResult)
+                                            {
+                                                Position.Instance.ItemCount.bRotationEN++;
+                                            }
                                         }
                                         appendText("左工位：Rotation测试结束");
                                         bLeftTotalResult = bLeftTotalResult & bLeftResult;
@@ -2000,6 +2094,10 @@ namespace P072G3A_FuncTest
                                         {
                                             bLeftResult = false;
                                             leftSZErrorCode = ("FPS Error");
+                                            if (bLeftTotalResult)
+                                            {
+                                                Position.Instance.ItemCount.bFPSEN++;
+                                            }
                                         }
                                         appendText("左工位：FPS测试结束");
                                         bLeftTotalResult = bLeftTotalResult & bLeftResult;
@@ -2016,6 +2114,10 @@ namespace P072G3A_FuncTest
                                         {
                                             bLeftResult = false;
                                             leftSZErrorCode = ("Voltage Error");
+                                            if (bLeftTotalResult)
+                                            {
+                                                Position.Instance.ItemCount.bVoltageEN++;
+                                            }
                                         }
                                         appendText("左工位：电压测试结束");
                                         bLeftTotalResult = bLeftTotalResult & bLeftResult;
@@ -2032,6 +2134,10 @@ namespace P072G3A_FuncTest
                                         {
                                             bLeftResult = false;
                                             leftSZErrorCode = ("Current Error");
+                                            if (bLeftTotalResult)
+                                            {
+                                                Position.Instance.ItemCount.bCurrentEN++;
+                                            }
                                         }
                                         appendText("左工位：电流测试结束");
                                         bLeftTotalResult = bLeftTotalResult & bLeftResult;
@@ -2049,6 +2155,10 @@ namespace P072G3A_FuncTest
                                         {
                                             bLeftResult = false;
                                             leftSZErrorCode = ("Power Error");
+                                            if (bLeftTotalResult)
+                                            {
+                                                Position.Instance.ItemCount.bPowerEN++;
+                                            }
                                         }
                                         appendText("左工位：功率测试结束");
                                         bLeftTotalResult = bLeftTotalResult & bLeftResult;
@@ -2061,6 +2171,10 @@ namespace P072G3A_FuncTest
                                         if (!bLeftResult)
                                         {
                                             leftSZErrorCode = ("ChangeView Error");
+                                            if (bLeftTotalResult)
+                                            {
+                                                Position.Instance.ItemCount.bChangeViewEN++;
+                                            }
                                         }
                                         appendText("左工位：切换测试结束");
                                         bLeftTotalResult = bLeftTotalResult & bLeftResult;
@@ -2104,12 +2218,14 @@ namespace P072G3A_FuncTest
                             {
                                 IoPoints.IDO4.Value = true;
                                 IoPoints.IDO5.Value = false;
+                                Config.Instance.LeftOKCount++;
                                 productCount(true);
                             }
                             else
                             {
                                 IoPoints.IDO4.Value = false;
                                 IoPoints.IDO5.Value = true;
+                                Config.Instance.LeftNGCount++;
                                 productCount(false);
                             }
 
@@ -2212,11 +2328,40 @@ namespace P072G3A_FuncTest
                                 if (!bRightResult)
                                 {
                                     rightSZErrorCode = ("Dark error");
+                                    if (bRightTotalResult)
+                                    {
+                                        Position.Instance.ItemCount1.bBlackEN++;
+                                    }
                                 }
                                 appendText("右工位：黑场测试结束");
                                 bRightTotalResult = bRightTotalResult & bRightResult;
                                 changePicBoxImg("BlackPicBoxB", bRightResult);
                             }
+                            if ((bRightTotalResult || Position.Instance.testItem.bAllTestEN) && Position.Instance.testItem.bInfraredDarkEN)
+                            {
+                                appendText("右工位：打开红外灯");
+                                ImageSitB.IR_LED_ON();
+                                Thread.Sleep(500);
+                                StringBuilder buf = new StringBuilder(6072);//指定的buf大小必须大于传入的字符长度
+                                bRightResult = ImageSitB.DesayTestDark_LedLight(buf);
+                                Thread.Sleep(500);
+                                string strout = buf.ToString();
+                                appendText(strout);
+                                appendText("右工位：关闭红外灯");
+                                ImageSitB.IR_LED_OFF();
+                                if (!bRightResult)
+                                {
+                                    rightSZErrorCode = ("Infrared_Dark error");
+                                    if (bRightTotalResult)
+                                    {
+                                        Position.Instance.ItemCount1.bInfraredDarkEN++;
+                                    }
+                                }
+                                appendText("左工位：黑场红外亮度测试结束");
+                                bRightTotalResult = bRightTotalResult & bRightResult;
+                                changePicBoxImg("InfraredDarkPicBoxB", bRightResult);
+                            }
+                            appendText("右工位：黑场测试结束");
                             rightTestProcess = 60;
                             break;
 
@@ -2313,6 +2458,10 @@ namespace P072G3A_FuncTest
                                     if (!bRightResult)
                                     {
                                         rightSZErrorCode = ("WB Error");
+                                        if (bRightTotalResult)
+                                        {
+                                            Position.Instance.ItemCount1.bWBEN++;
+                                        }
                                     }
                                     appendText("右工位：WB测试结束");
                                     bRightTotalResult = bRightTotalResult & bRightResult;
@@ -2328,6 +2477,10 @@ namespace P072G3A_FuncTest
                                     if (!bRightResult)
                                     {
                                         rightSZErrorCode = ("Shading Error");
+                                        if (bRightTotalResult)
+                                        {
+                                            Position.Instance.ItemCount1.bShadingEN++;
+                                        }
                                     }
                                     appendText("右工位：Shading测试结束");
                                     bRightTotalResult = bRightTotalResult & bRightResult;
@@ -2343,6 +2496,10 @@ namespace P072G3A_FuncTest
                                     if (!bRightResult)
                                     {
                                         rightSZErrorCode = ("Blemish Error");
+                                        if (bRightTotalResult)
+                                        {
+                                            Position.Instance.ItemCount1.bBlemishEN++;
+                                        }
                                     }
                                     appendText("右工位：Blemish测试结束");
                                     bRightTotalResult = bRightTotalResult & bRightResult;
@@ -2358,6 +2515,10 @@ namespace P072G3A_FuncTest
                                     if (!bRightResult)
                                     {
                                         rightSZErrorCode = ("BadPixel Error");
+                                        if (bRightTotalResult)
+                                        {
+                                            Position.Instance.ItemCount1.bBadPixelEN++;
+                                        }
                                     }
                                     appendText("右工位：BadPixel测试结束");
                                     bRightTotalResult = bRightTotalResult & bRightResult;
@@ -2373,6 +2534,10 @@ namespace P072G3A_FuncTest
                                     if (!bRightResult)
                                     {
                                         rightSZErrorCode = ("HotPixel Error");
+                                        if (bRightTotalResult)
+                                        {
+                                            Position.Instance.ItemCount1.bHotPixelEN++;
+                                        }
                                     }
                                     appendText("右工位：HotPixel测试结束");
                                     bRightTotalResult = bRightTotalResult & bRightResult;
@@ -2467,6 +2632,10 @@ namespace P072G3A_FuncTest
                                         if (!bRightResult)
                                         {
                                             rightSZErrorCode = ("MTF Error");
+                                            if (bRightTotalResult)
+                                            {
+                                                Position.Instance.ItemCount1.bMTFEN++;
+                                            }
                                         }
                                         appendText("右工位：MTF测试结束");
                                         bRightTotalResult = bRightTotalResult & bRightResult;
@@ -2482,6 +2651,10 @@ namespace P072G3A_FuncTest
                                         if (!bRightResult)
                                         {
                                             rightSZErrorCode = ("IRMTF Error");
+                                            if (bRightTotalResult)
+                                            {
+                                                Position.Instance.ItemCount1.bIRMTFEN++;
+                                            }
                                         }
                                         appendText("右工位：IRMTF测试结束");
                                         bRightTotalResult = bRightTotalResult & bRightResult;
@@ -2508,17 +2681,30 @@ namespace P072G3A_FuncTest
                                                 rightSZErrorCode = ("Color Error");
                                                 changePicBoxImg("ColorPicBoxB", false);
                                                 changePicBoxImg("GrayPicBoxB", true);
+                                                if (bRightTotalResult)
+                                                {
+                                                    Position.Instance.ItemCount1.bColorEN++;
+                                                }
                                             }
                                             else if (result == 2)
                                             {
                                                 rightSZErrorCode = ("Gray Error");
                                                 changePicBoxImg("ColorPicBoxB", true);
                                                 changePicBoxImg("GrayPicBoxB", false);
+                                                if (bRightTotalResult)
+                                                {
+                                                    Position.Instance.ItemCount1.bGrayEN++;
+                                                }
                                             }
                                             else
                                             {
                                                 changePicBoxImg("ColorPicBoxB", false);
                                                 changePicBoxImg("GrayPicBoxB", false);
+                                                if (bRightTotalResult)
+                                                {
+                                                    Position.Instance.ItemCount1.bColorEN++;
+                                                    Position.Instance.ItemCount1.bGrayEN++;
+                                                }
                                             }
                                         }
                                         appendText("右工位：Color/Gray测试结束");
@@ -2535,6 +2721,10 @@ namespace P072G3A_FuncTest
                                         if (!bRightResult)
                                         {
                                             rightSZErrorCode = ("FOV Error");
+                                            if (bRightTotalResult)
+                                            {
+                                                Position.Instance.ItemCount1.bFOVEN++;
+                                            }
                                         }
                                         appendText("右工位：FOV测试结束");
                                         bRightTotalResult = bRightTotalResult & bRightResult;
@@ -2550,6 +2740,10 @@ namespace P072G3A_FuncTest
                                         if (!bRightResult)
                                         {
                                             rightSZErrorCode = ("Aligment Error");
+                                            if (bRightTotalResult)
+                                            {
+                                                Position.Instance.ItemCount1.bAlignmentEN++;
+                                            }
                                         }
                                         appendText("右工位：Aligment测试结束");
                                         bRightTotalResult = bRightTotalResult & bRightResult;
@@ -2565,6 +2759,10 @@ namespace P072G3A_FuncTest
                                         if (!bRightResult)
                                         {
                                             rightSZErrorCode = ("Distortion Error");
+                                            if (bRightTotalResult)
+                                            {
+                                                Position.Instance.ItemCount1.bDistortionEN++;
+                                            }
                                         }
                                         appendText("右工位：Distortion测试结束");
                                         bRightTotalResult = bRightTotalResult & bRightResult;
@@ -2580,6 +2778,10 @@ namespace P072G3A_FuncTest
                                         if (!bRightResult)
                                         {
                                             rightSZErrorCode = ("SNR Error");
+                                            if (bRightTotalResult)
+                                            {
+                                                Position.Instance.ItemCount1.bSNREN++;
+                                            }
                                         }
                                         appendText("右工位：SNR测试结束");
                                         bRightTotalResult = bRightTotalResult & bRightResult;
@@ -2595,6 +2797,10 @@ namespace P072G3A_FuncTest
                                         if (!bRightResult)
                                         {
                                             rightSZErrorCode = ("Rotation Error");
+                                            if (bRightTotalResult)
+                                            {
+                                                Position.Instance.ItemCount1.bRotationEN++;
+                                            }
                                         }
                                         appendText("右工位：Rotation测试结束");
                                         bRightTotalResult = bRightTotalResult & bRightResult;
@@ -2613,6 +2819,10 @@ namespace P072G3A_FuncTest
                                         {
                                             bRightResult = false;
                                             rightSZErrorCode = ("FPS Error");
+                                            if (bRightTotalResult)
+                                            {
+                                                Position.Instance.ItemCount1.bFPSEN++;
+                                            }
                                         }
                                         appendText("右工位：FPS测试结束");
                                         bRightTotalResult = bRightTotalResult & bRightResult;
@@ -2629,6 +2839,10 @@ namespace P072G3A_FuncTest
                                         {
                                             bRightResult = false;
                                             rightSZErrorCode = ("Voltage Error");
+                                            if (bRightTotalResult)
+                                            {
+                                                Position.Instance.ItemCount1.bVoltageEN++;
+                                            }
                                         }
                                         appendText("右工位：电压测试结束");
                                         bRightTotalResult = bRightTotalResult & bRightResult;
@@ -2645,6 +2859,10 @@ namespace P072G3A_FuncTest
                                         {
                                             bRightResult = false;
                                             rightSZErrorCode = ("Current Error");
+                                            if (bRightTotalResult)
+                                            {
+                                                Position.Instance.ItemCount1.bCurrentEN++;
+                                            }
                                         }
                                         appendText("右工位：电流测试结束");
                                         bRightTotalResult = bRightTotalResult & bRightResult;
@@ -2662,6 +2880,10 @@ namespace P072G3A_FuncTest
                                         {
                                             bRightResult = false;
                                             rightSZErrorCode = ("Power Error");
+                                            if (bRightTotalResult)
+                                            {
+                                                Position.Instance.ItemCount1.bPowerEN++;
+                                            }
                                         }
                                         appendText("右工位：功率测试结束");
                                         bRightTotalResult = bRightTotalResult & bRightResult;
@@ -2674,6 +2896,10 @@ namespace P072G3A_FuncTest
                                         if (!bRightResult)
                                         {
                                             rightSZErrorCode = ("ChangeView Error");
+                                            if (bRightTotalResult)
+                                            {
+                                                Position.Instance.ItemCount1.bChangeViewEN++;
+                                            }
                                         }
                                         appendText("右工位：切换测试结束");
                                         bRightTotalResult = bRightTotalResult & bRightResult;
@@ -2717,12 +2943,14 @@ namespace P072G3A_FuncTest
                             {
                                 IoPoints.IDO6.Value = true;
                                 IoPoints.IDO7.Value = false;
+                                Config.Instance.RightOKCount++;
                                 productCount(true);
                             }
                             else
                             {
                                 IoPoints.IDO6.Value = false;
                                 IoPoints.IDO7.Value = true;
+                                Config.Instance.RightNGCount++;
                                 productCount(false);
                             }
 

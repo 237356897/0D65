@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.chkNGbox = new System.Windows.Forms.CheckBox();
             this.checkBox_GuanShan = new System.Windows.Forms.CheckBox();
             this.checkBoxNoRightWork = new System.Windows.Forms.CheckBox();
             this.checkBoxNoLeftWork = new System.Windows.Forms.CheckBox();
@@ -40,7 +41,6 @@
             this.checkBoxNoSafetyDoor = new System.Windows.Forms.CheckBox();
             this.checkBoxRunMode = new System.Windows.Forms.CheckBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.receivedBox = new System.Windows.Forms.TextBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.closeWhiteLightControl = new System.Windows.Forms.Button();
@@ -87,7 +87,7 @@
             this.IRMTFcheckBox = new System.Windows.Forms.CheckBox();
             this.WhiteBlaceCheckBox = new System.Windows.Forms.CheckBox();
             this.BlemishCheckBox = new System.Windows.Forms.CheckBox();
-            this.chkNGbox = new System.Windows.Forms.CheckBox();
+            this.InfraredDarkCheckBox = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -112,6 +112,17 @@
             this.groupBox1.TabIndex = 9;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "屏蔽功能：";
+            // 
+            // chkNGbox
+            // 
+            this.chkNGbox.AutoSize = true;
+            this.chkNGbox.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.chkNGbox.Location = new System.Drawing.Point(6, 154);
+            this.chkNGbox.Name = "chkNGbox";
+            this.chkNGbox.Size = new System.Drawing.Size(84, 16);
+            this.chkNGbox.TabIndex = 13;
+            this.chkNGbox.Text = "屏蔽NG料筒";
+            this.chkNGbox.UseVisualStyleBackColor = true;
             // 
             // checkBox_GuanShan
             // 
@@ -215,20 +226,13 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.checkBoxRunMode);
+            this.groupBox2.Controls.Add(this.AllTestCheckBox);
             this.groupBox2.Location = new System.Drawing.Point(12, 200);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(194, 55);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "其他设置：";
-            // 
-            // receivedBox
-            // 
-            this.receivedBox.Location = new System.Drawing.Point(652, 22);
-            this.receivedBox.Multiline = true;
-            this.receivedBox.Name = "receivedBox";
-            this.receivedBox.Size = new System.Drawing.Size(215, 341);
-            this.receivedBox.TabIndex = 5;
             // 
             // timer1
             // 
@@ -290,6 +294,7 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.InfraredDarkCheckBox);
             this.groupBox3.Controls.Add(this.DelayTimeTextBox);
             this.groupBox3.Controls.Add(this.label6);
             this.groupBox3.Controls.Add(this.FPSMaxTextBox);
@@ -307,7 +312,6 @@
             this.groupBox3.Controls.Add(this.CurrentMaxTextBox);
             this.groupBox3.Controls.Add(this.label1);
             this.groupBox3.Controls.Add(this.CurrentMinTextBox);
-            this.groupBox3.Controls.Add(this.AllTestCheckBox);
             this.groupBox3.Controls.Add(this.PowCheckBox);
             this.groupBox3.Controls.Add(this.button1);
             this.groupBox3.Controls.Add(this.FWCheckBox);
@@ -331,7 +335,7 @@
             this.groupBox3.Controls.Add(this.BlemishCheckBox);
             this.groupBox3.Location = new System.Drawing.Point(212, 12);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(434, 351);
+            this.groupBox3.Size = new System.Drawing.Size(655, 351);
             this.groupBox3.TabIndex = 12;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "FW Fersion";
@@ -474,7 +478,7 @@
             // AllTestCheckBox
             // 
             this.AllTestCheckBox.AutoSize = true;
-            this.AllTestCheckBox.Location = new System.Drawing.Point(25, 300);
+            this.AllTestCheckBox.Location = new System.Drawing.Point(103, 24);
             this.AllTestCheckBox.Name = "AllTestCheckBox";
             this.AllTestCheckBox.Size = new System.Drawing.Size(72, 16);
             this.AllTestCheckBox.TabIndex = 17;
@@ -691,16 +695,15 @@
             this.BlemishCheckBox.Text = "脏污";
             this.BlemishCheckBox.UseVisualStyleBackColor = true;
             // 
-            // chkNGbox
+            // InfraredDarkCheckBox
             // 
-            this.chkNGbox.AutoSize = true;
-            this.chkNGbox.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.chkNGbox.Location = new System.Drawing.Point(6, 154);
-            this.chkNGbox.Name = "chkNGbox";
-            this.chkNGbox.Size = new System.Drawing.Size(84, 16);
-            this.chkNGbox.TabIndex = 13;
-            this.chkNGbox.Text = "屏蔽NG料筒";
-            this.chkNGbox.UseVisualStyleBackColor = true;
+            this.InfraredDarkCheckBox.AutoSize = true;
+            this.InfraredDarkCheckBox.Location = new System.Drawing.Point(25, 300);
+            this.InfraredDarkCheckBox.Name = "InfraredDarkCheckBox";
+            this.InfraredDarkCheckBox.Size = new System.Drawing.Size(96, 16);
+            this.InfraredDarkCheckBox.TabIndex = 39;
+            this.InfraredDarkCheckBox.Text = "黑场红外测试";
+            this.InfraredDarkCheckBox.UseVisualStyleBackColor = true;
             // 
             // frmSystemSetting
             // 
@@ -708,7 +711,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(879, 414);
             this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.receivedBox);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -723,7 +725,6 @@
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -735,7 +736,6 @@
         private System.Windows.Forms.CheckBox checkBoxNoLeftWork;
         private System.Windows.Forms.CheckBox checkBoxRunMode;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.TextBox receivedBox;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Button setTo940nm;
@@ -788,5 +788,6 @@
         private System.Windows.Forms.CheckBox chkLightTest;
         private System.Windows.Forms.CheckBox chkDarkTest;
         private System.Windows.Forms.CheckBox chkNGbox;
+        private System.Windows.Forms.CheckBox InfraredDarkCheckBox;
     }
 }

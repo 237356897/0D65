@@ -68,11 +68,14 @@ namespace desay.ProductData
         #region 生产信息
 
         public string ProductCountDis = "0";
-
         public string OKCountDis = "0";
-
         public string NGCountDis = "0";
 
+        public double LeftOKCount = 0;
+        public double LeftNGCount = 0;
+        public double RightOKCount = 0;
+        public double RightNGCount = 0;
+       
         #endregion
 
         #region 设备配置

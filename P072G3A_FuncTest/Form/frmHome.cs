@@ -102,7 +102,7 @@ namespace P072G3A_FuncTest
             {
                 ImageSitB.ExitDesayImageDlg();
                 DlgHandleB = IntPtr.Zero;
-            }  
+            }
         }
 
         public void ShowDesayTestDlg()
@@ -132,12 +132,12 @@ namespace P072G3A_FuncTest
             {
                 SetWindowPos(DlgHandleA, 0, 10, 150, 460, 470, 0);
                 ShowWindow(DlgHandleA, 0);//1为显示，0为隐藏
-            }            
+            }
             if (DlgHandleB != IntPtr.Zero)
             {
                 SetWindowPos(DlgHandleB, 0, 720, 150, 460, 470, 0);
                 ShowWindow(DlgHandleB, 0);//1为显示，0为隐藏 
-            }            
+            }
         }
 
         #endregion
@@ -212,6 +212,17 @@ namespace P072G3A_FuncTest
             ImageSitA.StopCamera();
             ImageSitB.StopCamera();
         }
+
+        private void btnProductYieldA_Click(object sender, EventArgs e)
+        {
+            new frmYield(true).Show();
+        }
+
+        private void btnProductYieldB_Click(object sender, EventArgs e)
+        {
+            new frmYield(false).Show();
+        }
+
         #endregion
 
         #region UI界面更新
@@ -240,13 +251,11 @@ namespace P072G3A_FuncTest
                 {
                     setCtrTxt(labOKCountDis, (int.Parse(labOKCountDis.Text) + 1).ToString());
                     Config.Instance.OKCountDis = labOKCountDis.Text;
-                    //IoPoints.TDO14.Value = true; //双色灯绿（OK信号灯）
                 }
                 else
                 {
                     setCtrTxt(labNGCountDis, (int.Parse(labNGCountDis.Text) + 1).ToString());
                     Config.Instance.NGCountDis = labNGCountDis.Text;
-                    //IoPoints.TDO15.Value = true; //双色灯红（NG信号灯）
                 }
                 setCtrTxt(labProductCountDis, (int.Parse(labProductCountDis.Text) + 1).ToString());
             }
@@ -257,7 +266,11 @@ namespace P072G3A_FuncTest
                 setCtrTxt(labProductCountDis, "0");
                 Config.Instance.OKCountDis = "0";
                 Config.Instance.NGCountDis = "0";
-                
+
+                Config.Instance.LeftOKCount = 0;
+                Config.Instance.LeftNGCount = 0;
+                Config.Instance.RightOKCount = 0;
+                Config.Instance.RightNGCount = 0;
             }
             Config.Instance.ProductCountDis = labProductCountDis.Text;
         }
@@ -350,7 +363,7 @@ namespace P072G3A_FuncTest
             {
                 string FirstChar = item.Name.Substring(0, 1);
                 bool EndChar = item.Name.Contains("EN");
-                if (EndChar && FirstChar == "b" && item.Name!="bAllTestEN")
+                if (EndChar && FirstChar == "b" && item.Name != "bAllTestEN")
                 {
                     bool b = (bool)item.GetValue(Position.Instance.testItem);
                     if (b)
@@ -397,7 +410,7 @@ namespace P072G3A_FuncTest
             {
                 string FirstChar = item.Name.Substring(0, 1);
                 bool EndChar = item.Name.Contains("EN");
-                if (EndChar && FirstChar == "b" && item.Name!="bAllTestEN")
+                if (EndChar && FirstChar == "b" && item.Name != "bAllTestEN")
                 {
                     bool b = (bool)item.GetValue(Position.Instance.testItem);
                     if (!b)
@@ -442,6 +455,70 @@ namespace P072G3A_FuncTest
             }
         }
 
+        public void ClearAllData()
+        {
+            //数据清零
+            Type type = typeof(Position.ItemYield);
+            FieldInfo[] infos = type.GetFields();
+            foreach (var item in infos)
+            {
+                object BoxedItemCount = Position.Instance.ItemCount;
+                item.SetValue(BoxedItemCount, 0);
+                Position.Instance.ItemCount = (Position.ItemYield)BoxedItemCount;
+
+                object BoxedItemCount1 = Position.Instance.ItemCount1;
+                item.SetValue(BoxedItemCount1, 0);
+                Position.Instance.ItemCount1 = (Position.ItemYield)BoxedItemCount1;
+            }
+
+            #region 注释代码
+            //Position.Instance.ItemCount.bBlackEN = 0;
+            //Position.Instance.ItemCount.bBlemishEN = 0;
+            //Position.Instance.ItemCount.bBadPixelEN = 0;
+            //Position.Instance.ItemCount.bWBEN = 0;
+            //Position.Instance.ItemCount.bMTFEN = 0;
+            //Position.Instance.ItemCount.bIRMTFEN = 0;
+            //Position.Instance.ItemCount.bGrayEN = 0;
+            //Position.Instance.ItemCount.bColorEN = 0;
+            //Position.Instance.ItemCount.bFOVEN = 0;
+            //Position.Instance.ItemCount.bFPSEN = 0;
+            //Position.Instance.ItemCount.bAlignmentEN = 0;
+            //Position.Instance.ItemCount.bDistortionEN = 0;
+            //Position.Instance.ItemCount.bVoltageEN = 0;
+            //Position.Instance.ItemCount.bCurrentEN = 0;
+            //Position.Instance.ItemCount.bPowerEN = 0;
+            //Position.Instance.ItemCount.bFWEN = 0;
+            //Position.Instance.ItemCount.bShadingEN = 0;
+            //Position.Instance.ItemCount.bSNREN = 0;
+            //Position.Instance.ItemCount.bRotationEN = 0;
+            //Position.Instance.ItemCount.bHotPixelEN = 0;
+            //Position.Instance.ItemCount.bChangeViewEN = 0;
+
+            //Position.Instance.ItemCount1.bBlackEN = 0;
+            //Position.Instance.ItemCount1.bBlemishEN = 0;
+            //Position.Instance.ItemCount1.bBadPixelEN = 0;
+            //Position.Instance.ItemCount1.bWBEN = 0;
+            //Position.Instance.ItemCount1.bMTFEN = 0;
+            //Position.Instance.ItemCount1.bIRMTFEN = 0;
+            //Position.Instance.ItemCount1.bGrayEN = 0;
+            //Position.Instance.ItemCount1.bColorEN = 0;
+            //Position.Instance.ItemCount1.bFOVEN = 0;
+            //Position.Instance.ItemCount1.bFPSEN = 0;
+            //Position.Instance.ItemCount1.bAlignmentEN = 0;
+            //Position.Instance.ItemCount1.bDistortionEN = 0;
+            //Position.Instance.ItemCount1.bVoltageEN = 0;
+            //Position.Instance.ItemCount1.bCurrentEN = 0;
+            //Position.Instance.ItemCount1.bPowerEN = 0;
+            //Position.Instance.ItemCount1.bFWEN = 0;
+            //Position.Instance.ItemCount1.bShadingEN = 0;
+            //Position.Instance.ItemCount1.bSNREN = 0;
+            //Position.Instance.ItemCount1.bRotationEN = 0;
+            //Position.Instance.ItemCount1.bHotPixelEN = 0;
+            //Position.Instance.ItemCount1.bChangeViewEN = 0;
+            #endregion
+        }
+
         #endregion
+
     }
 }

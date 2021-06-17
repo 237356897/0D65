@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.btnProductYieldB = new System.Windows.Forms.Button();
             this.BSave = new System.Windows.Forms.Button();
             this.Bpin = new System.Windows.Forms.Button();
             this.BbtnRun = new System.Windows.Forms.Button();
@@ -36,6 +37,7 @@
             this.BbtnStop = new System.Windows.Forms.Button();
             this.Bsetting = new System.Windows.Forms.Button();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.btnProductYieldA = new System.Windows.Forms.Button();
             this.ASave = new System.Windows.Forms.Button();
             this.Apin = new System.Windows.Forms.Button();
             this.Adevice = new System.Windows.Forms.Button();
@@ -148,6 +150,10 @@
             this.label1 = new System.Windows.Forms.Label();
             this.labLeftTotalRes = new System.Windows.Forms.Label();
             this.labRightTotalRes = new System.Windows.Forms.Label();
+            this.InfraredDarkPicBoxA = new System.Windows.Forms.PictureBox();
+            this.InfraredDarkPicBoxB = new System.Windows.Forms.PictureBox();
+            this.labInfraredDarkA = new System.Windows.Forms.Label();
+            this.labInfraredDarkB = new System.Windows.Forms.Label();
             this.groupBox8.SuspendLayout();
             this.groupBox7.SuspendLayout();
             this.groupBox6.SuspendLayout();
@@ -195,22 +201,36 @@
             ((System.ComponentModel.ISupportInitialize)(this.BlemishPicBoxA)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BlackPicBoxA)).BeginInit();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.InfraredDarkPicBoxA)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.InfraredDarkPicBoxB)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox8
             // 
+            this.groupBox8.Controls.Add(this.btnProductYieldB);
             this.groupBox8.Controls.Add(this.BSave);
             this.groupBox8.Controls.Add(this.Bpin);
             this.groupBox8.Controls.Add(this.BbtnRun);
             this.groupBox8.Controls.Add(this.Bdevice);
             this.groupBox8.Controls.Add(this.BbtnStop);
             this.groupBox8.Controls.Add(this.Bsetting);
-            this.groupBox8.Location = new System.Drawing.Point(614, 125);
+            this.groupBox8.Location = new System.Drawing.Point(614, 110);
             this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Size = new System.Drawing.Size(82, 364);
+            this.groupBox8.Size = new System.Drawing.Size(82, 420);
             this.groupBox8.TabIndex = 48;
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "图像相关B";
+            // 
+            // btnProductYieldB
+            // 
+            this.btnProductYieldB.BackgroundImage = global::P072G3A_FuncTest.Properties.Resources.统计;
+            this.btnProductYieldB.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnProductYieldB.Location = new System.Drawing.Point(11, 351);
+            this.btnProductYieldB.Name = "btnProductYieldB";
+            this.btnProductYieldB.Size = new System.Drawing.Size(61, 61);
+            this.btnProductYieldB.TabIndex = 59;
+            this.btnProductYieldB.UseVisualStyleBackColor = true;
+            this.btnProductYieldB.Click += new System.EventHandler(this.btnProductYieldB_Click);
             // 
             // BSave
             // 
@@ -218,7 +238,7 @@
             this.BSave.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.BSave.Location = new System.Drawing.Point(11, 295);
             this.BSave.Name = "BSave";
-            this.BSave.Size = new System.Drawing.Size(61, 61);
+            this.BSave.Size = new System.Drawing.Size(61, 55);
             this.BSave.TabIndex = 58;
             this.BSave.UseVisualStyleBackColor = true;
             this.BSave.Click += new System.EventHandler(this.BSave_Click);
@@ -280,18 +300,30 @@
             // 
             // groupBox7
             // 
+            this.groupBox7.Controls.Add(this.btnProductYieldA);
             this.groupBox7.Controls.Add(this.ASave);
             this.groupBox7.Controls.Add(this.Apin);
             this.groupBox7.Controls.Add(this.Adevice);
             this.groupBox7.Controls.Add(this.Asetting);
             this.groupBox7.Controls.Add(this.AbtnStop);
             this.groupBox7.Controls.Add(this.AbtnRun);
-            this.groupBox7.Location = new System.Drawing.Point(504, 125);
+            this.groupBox7.Location = new System.Drawing.Point(504, 110);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(86, 364);
+            this.groupBox7.Size = new System.Drawing.Size(86, 420);
             this.groupBox7.TabIndex = 47;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "图像相关A";
+            // 
+            // btnProductYieldA
+            // 
+            this.btnProductYieldA.BackgroundImage = global::P072G3A_FuncTest.Properties.Resources.统计;
+            this.btnProductYieldA.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnProductYieldA.Location = new System.Drawing.Point(12, 350);
+            this.btnProductYieldA.Name = "btnProductYieldA";
+            this.btnProductYieldA.Size = new System.Drawing.Size(61, 62);
+            this.btnProductYieldA.TabIndex = 59;
+            this.btnProductYieldA.UseVisualStyleBackColor = true;
+            this.btnProductYieldA.Click += new System.EventHandler(this.btnProductYieldA_Click);
             // 
             // ASave
             // 
@@ -299,7 +331,7 @@
             this.ASave.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ASave.Location = new System.Drawing.Point(12, 295);
             this.ASave.Name = "ASave";
-            this.ASave.Size = new System.Drawing.Size(61, 61);
+            this.ASave.Size = new System.Drawing.Size(61, 55);
             this.ASave.TabIndex = 58;
             this.ASave.UseVisualStyleBackColor = true;
             this.ASave.Click += new System.EventHandler(this.ASave_Click);
@@ -390,8 +422,10 @@
             this.groupBox6.Controls.Add(this.labMTFB);
             this.groupBox6.Controls.Add(this.FPSPicBoxB);
             this.groupBox6.Controls.Add(this.BlemishPicBoxB);
+            this.groupBox6.Controls.Add(this.labInfraredDarkB);
             this.groupBox6.Controls.Add(this.labChangeViewB);
             this.groupBox6.Controls.Add(this.labFOVB);
+            this.groupBox6.Controls.Add(this.InfraredDarkPicBoxB);
             this.groupBox6.Controls.Add(this.ChangeViewPicBoxB);
             this.groupBox6.Controls.Add(this.MTFPicBoxB);
             this.groupBox6.Controls.Add(this.FOVPicBoxB);
@@ -841,7 +875,9 @@
             this.groupBox5.Controls.Add(this.ColorPicBoxA);
             this.groupBox5.Controls.Add(this.labGrayA);
             this.groupBox5.Controls.Add(this.GrayPicBoxA);
+            this.groupBox5.Controls.Add(this.labInfraredDarkA);
             this.groupBox5.Controls.Add(this.labChangeViewA);
+            this.groupBox5.Controls.Add(this.InfraredDarkPicBoxA);
             this.groupBox5.Controls.Add(this.ChangeViewPicBoxA);
             this.groupBox5.Controls.Add(this.labIRMTFA);
             this.groupBox5.Controls.Add(this.IRMTFPicBoxA);
@@ -1479,7 +1515,7 @@
             this.labLeftTotalRes.AutoSize = true;
             this.labLeftTotalRes.Font = new System.Drawing.Font("宋体", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.labLeftTotalRes.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.labLeftTotalRes.Location = new System.Drawing.Point(514, 67);
+            this.labLeftTotalRes.Location = new System.Drawing.Point(514, 55);
             this.labLeftTotalRes.Name = "labLeftTotalRes";
             this.labLeftTotalRes.Size = new System.Drawing.Size(70, 48);
             this.labLeftTotalRes.TabIndex = 50;
@@ -1489,11 +1525,49 @@
             // 
             this.labRightTotalRes.AutoSize = true;
             this.labRightTotalRes.Font = new System.Drawing.Font("宋体", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.labRightTotalRes.Location = new System.Drawing.Point(624, 67);
+            this.labRightTotalRes.Location = new System.Drawing.Point(624, 55);
             this.labRightTotalRes.Name = "labRightTotalRes";
             this.labRightTotalRes.Size = new System.Drawing.Size(70, 48);
             this.labRightTotalRes.TabIndex = 51;
             this.labRightTotalRes.Text = "NG";
+            // 
+            // InfraredDarkPicBoxA
+            // 
+            this.InfraredDarkPicBoxA.Image = global::P072G3A_FuncTest.Properties.Resources.Circle___Gray;
+            this.InfraredDarkPicBoxA.Location = new System.Drawing.Point(459, 51);
+            this.InfraredDarkPicBoxA.Name = "InfraredDarkPicBoxA";
+            this.InfraredDarkPicBoxA.Size = new System.Drawing.Size(25, 25);
+            this.InfraredDarkPicBoxA.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.InfraredDarkPicBoxA.TabIndex = 10;
+            this.InfraredDarkPicBoxA.TabStop = false;
+            // 
+            // InfraredDarkPicBoxB
+            // 
+            this.InfraredDarkPicBoxB.Image = global::P072G3A_FuncTest.Properties.Resources.Circle___Gray;
+            this.InfraredDarkPicBoxB.Location = new System.Drawing.Point(277, 112);
+            this.InfraredDarkPicBoxB.Name = "InfraredDarkPicBoxB";
+            this.InfraredDarkPicBoxB.Size = new System.Drawing.Size(25, 25);
+            this.InfraredDarkPicBoxB.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.InfraredDarkPicBoxB.TabIndex = 10;
+            this.InfraredDarkPicBoxB.TabStop = false;
+            // 
+            // labInfraredDarkA
+            // 
+            this.labInfraredDarkA.AutoSize = true;
+            this.labInfraredDarkA.Location = new System.Drawing.Point(490, 58);
+            this.labInfraredDarkA.Name = "labInfraredDarkA";
+            this.labInfraredDarkA.Size = new System.Drawing.Size(53, 12);
+            this.labInfraredDarkA.TabIndex = 11;
+            this.labInfraredDarkA.Text = "黑场红外";
+            // 
+            // labInfraredDarkB
+            // 
+            this.labInfraredDarkB.AutoSize = true;
+            this.labInfraredDarkB.Location = new System.Drawing.Point(305, 119);
+            this.labInfraredDarkB.Name = "labInfraredDarkB";
+            this.labInfraredDarkB.Size = new System.Drawing.Size(53, 12);
+            this.labInfraredDarkB.TabIndex = 11;
+            this.labInfraredDarkB.Text = "黑场红外";
             // 
             // frmHome
             // 
@@ -1560,6 +1634,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.BlemishPicBoxA)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.BlackPicBoxA)).EndInit();
             this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.InfraredDarkPicBoxA)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.InfraredDarkPicBoxB)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1686,5 +1762,11 @@
         private System.Windows.Forms.Button ASave;
         private System.Windows.Forms.Label labLeftTotalRes;
         private System.Windows.Forms.Label labRightTotalRes;
+        private System.Windows.Forms.Button btnProductYieldB;
+        private System.Windows.Forms.Button btnProductYieldA;
+        private System.Windows.Forms.PictureBox InfraredDarkPicBoxA;
+        private System.Windows.Forms.Label labInfraredDarkB;
+        private System.Windows.Forms.PictureBox InfraredDarkPicBoxB;
+        private System.Windows.Forms.Label labInfraredDarkA;
     }
 }

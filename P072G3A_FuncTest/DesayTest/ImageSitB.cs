@@ -33,11 +33,20 @@ namespace Image_Sitenamespace
         [DllImport(str_dll_file, CallingConvention = CallingConvention.Cdecl, EntryPoint = "StopCamera")]
         public static extern bool StopCamera();
 
+        [DllImport(str_dll_file, CallingConvention = CallingConvention.Cdecl, EntryPoint = "IR_LED_ON")]
+        public static extern bool IR_LED_ON();
+
+        [DllImport(str_dll_file, CallingConvention = CallingConvention.Cdecl, EntryPoint = "IR_LED_OFF")]
+        public static extern bool IR_LED_OFF();
+
         [DllImport(str_dll_file, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SetBarcode")]
         public static extern void SetBarcode(string szBarcode, string szJigSN);
 
         [DllImport(str_dll_file, CallingConvention = CallingConvention.Cdecl, EntryPoint = "DesayTestDark")]
         public static extern bool DesayTestDark(StringBuilder szTestData);
+
+        [DllImport(str_dll_file, CallingConvention = CallingConvention.Cdecl, EntryPoint = "DesayTestDark_LedLight")]
+        public static extern bool DesayTestDark_LedLight(StringBuilder szTestData);
 
         [DllImport(str_dll_file, CallingConvention = CallingConvention.Cdecl, EntryPoint = "DesayTestChart")]
         public static extern bool DesayTestChart();

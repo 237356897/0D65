@@ -45,7 +45,7 @@ namespace P072G3A_FuncTest
                 //SerializerManager<Position>.Instance.Save(Marking.PositionPath,Position.Instance);
                 //SerializableDictionary<string, string>.Instance.SaveDicXml(Global.Instance.PassWord);
 
-
+                //Application.Run(new frmYield(false));
                 Application.Run(new frmMain());
             }
             else

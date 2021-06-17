@@ -45,6 +45,7 @@ namespace P072G3A_FuncTest
         {
             #region 测试项
             BlackItemCheckBox.Checked = Position.Instance.testItem.bBlackEN;
+            InfraredDarkCheckBox.Checked = Position.Instance.testItem.bInfraredDarkEN;
             BlemishCheckBox.Checked = Position.Instance.testItem.bBlemishEN;
             BadPixelCheckBox.Checked = Position.Instance.testItem.bBadPixelEN;
             WhiteBlaceCheckBox.Checked = Position.Instance.testItem.bWBEN;
@@ -101,6 +102,7 @@ namespace P072G3A_FuncTest
         {
             #region 测试项
             Position.Instance.testItem.bBlackEN = BlackItemCheckBox.Checked;
+            Position.Instance.testItem.bInfraredDarkEN = InfraredDarkCheckBox.Checked;
             Position.Instance.testItem.bBlemishEN = BlemishCheckBox.Checked;
             Position.Instance.testItem.bBadPixelEN = BadPixelCheckBox.Checked;
             Position.Instance.testItem.bWBEN = WhiteBlaceCheckBox.Checked;
@@ -346,22 +348,22 @@ namespace P072G3A_FuncTest
 
         public void appendWriteOrReceiveData(byte[] data)
         {
-            receivedBox.ForeColor = Color.Red;
-            string hexString = string.Empty;
+            //receivedBox.ForeColor = Color.Red;
+            //string hexString = string.Empty;
 
-            if (data != null)
-            {
-                StringBuilder strB = new StringBuilder();
-                for (int i = 0; i < data.Length; i++)
-                {
-                    strB.Append(data[i].ToString("X2"));
-                    strB.Append("-");
-                }
-                hexString = strB.ToString();
-            }
-            receivedBox.AppendText(DateTime.Now.ToString("HH:mm:ss ") + hexString + "\r\n");
-            // AddLgoToTXT(DateTime.Now.ToString("HH:mm:ss ") + hexString + "\r\n");
-            receivedBox.ForeColor = Color.Black;
+            //if (data != null)
+            //{
+            //    StringBuilder strB = new StringBuilder();
+            //    for (int i = 0; i < data.Length; i++)
+            //    {
+            //        strB.Append(data[i].ToString("X2"));
+            //        strB.Append("-");
+            //    }
+            //    hexString = strB.ToString();
+            //}
+            //receivedBox.AppendText(DateTime.Now.ToString("HH:mm:ss ") + hexString + "\r\n");
+            //// AddLgoToTXT(DateTime.Now.ToString("HH:mm:ss ") + hexString + "\r\n");
+            //receivedBox.ForeColor = Color.Black;
         }
 
         #endregion

@@ -647,12 +647,42 @@ namespace P072G3A_FuncTest
 
         private void btnDecY2_Click(object sender, EventArgs e)//Y2前进
         {
+            if (Y2.IsMotionless && radioBtnSetDistance.Checked && AxisY2.IsAction())
+            {
+                int pulseNum = 0;
+                if (radioBtnDistance10um.Checked)
+                { pulseNum = (int)(0.01 / PulseEquivalentY2); }
+                else if (radioBtnDistance100um.Checked)
+                { pulseNum = (int)(0.1 / PulseEquivalentY2); }
+                else if (radioBtnDistance1000um.Checked)
+                { pulseNum = (int)(1 / PulseEquivalentY2); }
+                else
+                { pulseNum = (int)((double)numericUpDOtherum.Value / PulseEquivalentY2); }
 
+                Y2.MoveRel(pulseNum * -1, getManualSpeed("Y2"));
+            }
+            else if (!AxisY2.IsAction())
+            { MessageBox.Show("此机构状态存在干涉，不可动作！"); }
         }
 
         private void btnAddZ_Click(object sender, EventArgs e)//Z上移
         {
+            if (Z.IsMotionless && radioBtnSetDistance.Checked && AxisZ.IsAction())
+            {
+                int pulseNum = 0;
+                if (radioBtnDistance10um.Checked)
+                { pulseNum = (int)(0.01 / PulseEquivalentZ); }
+                else if (radioBtnDistance100um.Checked)
+                { pulseNum = (int)(0.1 / PulseEquivalentZ); }
+                else if (radioBtnDistance1000um.Checked)
+                { pulseNum = (int)(1 / PulseEquivalentZ); }
+                else
+                { pulseNum = (int)((double)numericUpDOtherum.Value / PulseEquivalentZ); }
 
+                Z.MoveRel(pulseNum, getManualSpeed("Z"));
+            }
+            else if (!AxisZ.IsAction())
+            { MessageBox.Show("此机构状态存在干涉，不可动作！"); }
         }
 
         private void btnDecZ_Click(object sender, EventArgs e)//Z下移
