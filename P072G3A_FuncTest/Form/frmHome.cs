@@ -289,6 +289,7 @@ namespace P072G3A_FuncTest
 
         public void ResetLeftPicBoxColor()
         {
+            InfraredDarkPicBoxA.Image = Image.FromFile(@".\Resources\Circle - Gray.png");
             BlackPicBoxA.Image = Image.FromFile(@".\Resources\Circle - Gray.png");
             BlemishPicBoxA.Image = Image.FromFile(@".\Resources\Circle - Gray.png");
             BadPixelPicBoxA.Image = Image.FromFile(@".\Resources\Circle - Gray.png");
@@ -314,10 +315,10 @@ namespace P072G3A_FuncTest
 
         public void ResetRightPicBoxColor()
         {
+            InfraredDarkPicBoxB.Image = Image.FromFile(@".\Resources\Circle - Gray.png");
             BlackPicBoxB.Image = Image.FromFile(@".\Resources\Circle - Gray.png");
             BlemishPicBoxB.Image = Image.FromFile(@".\Resources\Circle - Gray.png");
             BadPixelPicBoxB.Image = Image.FromFile(@".\Resources\Circle - Gray.png");
-            BlackPicBoxB.Image = Image.FromFile(@".\Resources\Circle - Gray.png");
             WBPicBoxB.Image = Image.FromFile(@".\Resources\Circle - Gray.png");
             MTFPicBoxB.Image = Image.FromFile(@".\Resources\Circle - Gray.png");
             IRMTFPicBoxB.Image = Image.FromFile(@".\Resources\Circle - Gray.png");
