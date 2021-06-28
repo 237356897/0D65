@@ -84,6 +84,16 @@
             this.btnAddY1 = new System.Windows.Forms.Button();
             this.btnDecY1 = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.btnTest = new System.Windows.Forms.Button();
+            this.groupBox10 = new System.Windows.Forms.GroupBox();
+            this.tbResult = new System.Windows.Forms.TextBox();
+            this.groupBox9 = new System.Windows.Forms.GroupBox();
+            this.combTestItem = new System.Windows.Forms.ComboBox();
+            this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.radbRight = new System.Windows.Forms.RadioButton();
+            this.radbLeft = new System.Windows.Forms.RadioButton();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -97,6 +107,11 @@
             this.groupBSetDistance.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDOtherum)).BeginInit();
             this.groupBox4.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            this.groupBox10.SuspendLayout();
+            this.groupBox9.SuspendLayout();
+            this.groupBox8.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -763,11 +778,139 @@
             this.timer1.Enabled = true;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.btnTest);
+            this.groupBox3.Controls.Add(this.groupBox10);
+            this.groupBox3.Controls.Add(this.groupBox9);
+            this.groupBox3.Controls.Add(this.groupBox8);
+            this.groupBox3.Controls.Add(this.pictureBox1);
+            this.groupBox3.Location = new System.Drawing.Point(565, 12);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(408, 311);
+            this.groupBox3.TabIndex = 1;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "手动测试";
+            // 
+            // btnTest
+            // 
+            this.btnTest.Location = new System.Drawing.Point(355, 24);
+            this.btnTest.Name = "btnTest";
+            this.btnTest.Size = new System.Drawing.Size(45, 45);
+            this.btnTest.TabIndex = 1;
+            this.btnTest.Text = "测试";
+            this.btnTest.UseVisualStyleBackColor = true;
+            this.btnTest.Click += new System.EventHandler(this.btnTest_Click);
+            // 
+            // groupBox10
+            // 
+            this.groupBox10.Controls.Add(this.tbResult);
+            this.groupBox10.Location = new System.Drawing.Point(6, 75);
+            this.groupBox10.Name = "groupBox10";
+            this.groupBox10.Size = new System.Drawing.Size(394, 230);
+            this.groupBox10.TabIndex = 6;
+            this.groupBox10.TabStop = false;
+            this.groupBox10.Text = "测试结果";
+            // 
+            // tbResult
+            // 
+            this.tbResult.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tbResult.Location = new System.Drawing.Point(3, 17);
+            this.tbResult.Multiline = true;
+            this.tbResult.Name = "tbResult";
+            this.tbResult.Size = new System.Drawing.Size(388, 210);
+            this.tbResult.TabIndex = 0;
+            // 
+            // groupBox9
+            // 
+            this.groupBox9.Controls.Add(this.combTestItem);
+            this.groupBox9.Location = new System.Drawing.Point(163, 22);
+            this.groupBox9.Name = "groupBox9";
+            this.groupBox9.Size = new System.Drawing.Size(133, 48);
+            this.groupBox9.TabIndex = 5;
+            this.groupBox9.TabStop = false;
+            this.groupBox9.Text = "测试项选择";
+            // 
+            // combTestItem
+            // 
+            this.combTestItem.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.combTestItem.FormattingEnabled = true;
+            this.combTestItem.Items.AddRange(new object[] {
+            "IR清晰度",
+            "Shading",
+            "SNR",
+            "暗板",
+            "白平衡",
+            "光学中心",
+            "黑场红外",
+            "坏点",
+            "灰阶",
+            "畸变",
+            "亮点",
+            "清晰度",
+            "色彩",
+            "视场角",
+            "旋转倾斜",
+            "脏污",
+            "帧率"});
+            this.combTestItem.Location = new System.Drawing.Point(10, 20);
+            this.combTestItem.Name = "combTestItem";
+            this.combTestItem.Size = new System.Drawing.Size(111, 20);
+            this.combTestItem.TabIndex = 0;
+            this.combTestItem.SelectedIndexChanged += new System.EventHandler(this.combTestItem_SelectedIndexChanged);
+            // 
+            // groupBox8
+            // 
+            this.groupBox8.Controls.Add(this.radbRight);
+            this.groupBox8.Controls.Add(this.radbLeft);
+            this.groupBox8.Location = new System.Drawing.Point(6, 22);
+            this.groupBox8.Name = "groupBox8";
+            this.groupBox8.Size = new System.Drawing.Size(152, 48);
+            this.groupBox8.TabIndex = 4;
+            this.groupBox8.TabStop = false;
+            this.groupBox8.Text = "工位选择";
+            // 
+            // radbRight
+            // 
+            this.radbRight.AutoSize = true;
+            this.radbRight.Location = new System.Drawing.Point(82, 21);
+            this.radbRight.Name = "radbRight";
+            this.radbRight.Size = new System.Drawing.Size(59, 16);
+            this.radbRight.TabIndex = 0;
+            this.radbRight.Text = "右工位";
+            this.radbRight.UseVisualStyleBackColor = true;
+            this.radbRight.CheckedChanged += new System.EventHandler(this.radbRight_CheckedChanged);
+            // 
+            // radbLeft
+            // 
+            this.radbLeft.AutoSize = true;
+            this.radbLeft.Checked = true;
+            this.radbLeft.Location = new System.Drawing.Point(12, 21);
+            this.radbLeft.Name = "radbLeft";
+            this.radbLeft.Size = new System.Drawing.Size(59, 16);
+            this.radbLeft.TabIndex = 0;
+            this.radbLeft.TabStop = true;
+            this.radbLeft.Text = "左工位";
+            this.radbLeft.UseVisualStyleBackColor = true;
+            this.radbLeft.CheckedChanged += new System.EventHandler(this.radbLeft_CheckedChanged);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::P072G3A_FuncTest.Properties.Resources.Circle___Gray;
+            this.pictureBox1.InitialImage = null;
+            this.pictureBox1.Location = new System.Drawing.Point(304, 25);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(45, 45);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 3;
+            this.pictureBox1.TabStop = false;
+            // 
             // frmMotionDebug
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(569, 325);
+            this.ClientSize = new System.Drawing.Size(983, 328);
+            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox1);
             this.Name = "frmMotionDebug";
             this.Text = "Debug";
@@ -791,6 +934,13 @@
             this.groupBSetDistance.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDOtherum)).EndInit();
             this.groupBox4.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox10.ResumeLayout(false);
+            this.groupBox10.PerformLayout();
+            this.groupBox9.ResumeLayout(false);
+            this.groupBox8.ResumeLayout(false);
+            this.groupBox8.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -852,5 +1002,15 @@
         private System.Windows.Forms.CheckBox checkBoxNegativeLimitY1;
         private System.Windows.Forms.CheckBox checkBoxOriginY1;
         private System.Windows.Forms.CheckBox checkBoxPositiveLimitY1;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Button btnTest;
+        private System.Windows.Forms.ComboBox combTestItem;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.GroupBox groupBox10;
+        private System.Windows.Forms.TextBox tbResult;
+        private System.Windows.Forms.GroupBox groupBox9;
+        private System.Windows.Forms.GroupBox groupBox8;
+        private System.Windows.Forms.RadioButton radbRight;
+        private System.Windows.Forms.RadioButton radbLeft;
     }
 }

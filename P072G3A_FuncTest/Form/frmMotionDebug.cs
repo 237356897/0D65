@@ -10,6 +10,8 @@ using CommonLibrary;
 using System.IO;
 using Motion.AdlinkAps;
 using System.Threading;
+using Image_Sitenamespace;
+using desay.ProductData;
 
 namespace P072G3A_FuncTest
 {
@@ -28,6 +30,7 @@ namespace P072G3A_FuncTest
         }
         private void frmMotionDebug_Load(object sender, EventArgs e)
         {
+            combTestItem.SelectedIndex = 0;
             EquivalentPulseY1 = frmMain.main.frmMotion.EquivalentPulseY1;
             PulseEquivalentY1 = frmMain.main.frmMotion.PulseEquivalentY1;
             EquivalentPulseY2 = frmMain.main.frmMotion.EquivalentPulseY2;
@@ -173,6 +176,250 @@ namespace P072G3A_FuncTest
 
                 frmMain.main.frmMotion.Z.MoveRel(pulseNum * -1, frmMain.main.frmMotion.getManualSpeed("Z"));
             }
+        }
+
+        private void btnTest_Click(object sender, EventArgs e)
+        {
+            //指定的buf大小必须大于传入的字符长度
+            StringBuilder buf = new StringBuilder(6072);
+            bool bResult = false;           
+            string strout = string.Empty;
+            if (radbLeft.Checked)
+            {
+                switch (combTestItem.SelectedIndex)
+                {
+                    case 0://暗板
+                        bResult = ImageSitA.DesayTestDark(buf);
+                        Thread.Sleep(500);
+                        strout = buf.ToString();
+                        break;
+                    case 1://黑场红外
+                        ImageSitA.IR_LED_ON();
+                        Thread.Sleep(500);
+                        bResult = ImageSitA.DesayTestDark_LedLight(buf);
+                        Thread.Sleep(500);
+                        strout = buf.ToString();
+                        ImageSitA.IR_LED_OFF();
+                        break;
+                    case 2://白平衡
+                        bResult = ImageSitA.DesayTestWhite_WB(buf);
+                        Thread.Sleep(500);
+                        strout = buf.ToString();
+                        break;
+                    case 3://Shading
+                        bResult = ImageSitA.DesayTestWhite_Shading(buf);
+                        Thread.Sleep(500);
+                        strout = buf.ToString();
+                        break;
+                    case 4://脏污
+                        bResult = ImageSitA.DesayTestWhite_Blemish(buf);
+                        Thread.Sleep(500);
+                        strout = buf.ToString();
+                        break;
+                    case 5://坏点
+                        bResult = ImageSitA.DesayTestWhite_DefectPixel(buf);
+                        Thread.Sleep(500);
+                        strout = buf.ToString();
+                        break;
+                    case 6://亮点
+                        bResult = ImageSitA.DesayTestWhite_DefectPixel(buf);
+                        Thread.Sleep(500);
+                        strout = buf.ToString();
+                        break;
+                    case 7://清晰度
+                        bResult = ImageSitA.DesayTestChart_SFR(buf);
+                        Thread.Sleep(500);
+                        strout = buf.ToString();
+                        break;
+                    case 8://IR清晰度
+                        bResult = ImageSitA.DesayTestIRChart(buf);
+                        Thread.Sleep(500);
+                        strout = buf.ToString();
+                        break;
+                    case 9://灰阶
+                        int result = ImageSitA.DesayTestChart_ColorGray(buf);
+                        Thread.Sleep(500);
+                        strout = buf.ToString();
+                        bResult = result == 0 || result == 1;
+                        break;
+                    case 10://色彩
+                        int result1 = ImageSitA.DesayTestChart_ColorGray(buf);
+                        Thread.Sleep(500);
+                        strout = buf.ToString();
+                        bResult = result1 == 0 || result1 == 2;
+                        break;
+                    case 11://视场角
+                        bResult = ImageSitA.DesayTestChart_FOV(buf);
+                        Thread.Sleep(500);
+                        strout = buf.ToString();
+                        break;
+                    case 12://光学中心
+                        bResult = ImageSitA.DesayTestChart_Alignment(buf);
+                        Thread.Sleep(500);
+                        strout = buf.ToString();
+                        break;
+                    case 13://畸变
+                        bResult = ImageSitA.DesayTestChart_Distortion(buf);
+                        Thread.Sleep(500);
+                        strout = buf.ToString();
+                        break;
+                    case 14://SNR
+                        bResult = ImageSitA.DesayTestChart_SNR(buf);
+                        Thread.Sleep(500);
+                        strout = buf.ToString();
+                        break;
+                    case 15://旋转倾斜
+                        bResult = ImageSitA.DesayTestChart_TiltRotation(buf);
+                        Thread.Sleep(500);
+                        strout = buf.ToString();
+                        break;
+                    case 16://帧率
+                        float fps = ImageSitA.DesayTest_GetFPS();
+                        Thread.Sleep(500);
+                        if (fps > Position.Instance.testItem.bFPSMinValue && fps < Position.Instance.testItem.bFPSMaxValue)
+                        {
+                            bResult = true;
+                        }
+                        else
+                        {
+                            bResult = false;
+                        }
+                        strout = fps.ToString();
+                        break;
+                    default:
+                        break;
+                }
+            }
+            else
+            {
+                switch (combTestItem.SelectedIndex)
+                {
+                    case 0://暗板
+                        bResult = ImageSitB.DesayTestDark(buf);
+                        Thread.Sleep(500);
+                        strout = buf.ToString();
+                        break;
+                    case 1://黑场红外
+                        ImageSitA.IR_LED_ON();
+                        Thread.Sleep(500);
+                        bResult = ImageSitB.DesayTestDark_LedLight(buf);
+                        Thread.Sleep(500);
+                        strout = buf.ToString();
+                        ImageSitA.IR_LED_OFF();
+                        break;
+                    case 2://白平衡
+                        bResult = ImageSitB.DesayTestWhite_WB(buf);
+                        Thread.Sleep(500);
+                        strout = buf.ToString();
+                        break;
+                    case 3://Shading
+                        bResult = ImageSitB.DesayTestWhite_Shading(buf);
+                        Thread.Sleep(500);
+                        strout = buf.ToString();
+                        break;
+                    case 4://脏污
+                        bResult = ImageSitB.DesayTestWhite_Blemish(buf);
+                        Thread.Sleep(500);
+                        strout = buf.ToString();
+                        break;
+                    case 5://坏点
+                        bResult = ImageSitB.DesayTestWhite_DefectPixel(buf);
+                        Thread.Sleep(500);
+                        strout = buf.ToString();
+                        break;
+                    case 6://亮点
+                        bResult = ImageSitB.DesayTestWhite_DefectPixel(buf);
+                        Thread.Sleep(500);
+                        strout = buf.ToString();
+                        break;
+                    case 7://清晰度
+                        bResult = ImageSitB.DesayTestChart_SFR(buf);
+                        Thread.Sleep(500);
+                        strout = buf.ToString();
+                        break;
+                    case 8://IR清晰度
+                        bResult = ImageSitB.DesayTestIRChart(buf);
+                        Thread.Sleep(500);
+                        strout = buf.ToString();
+                        break;
+                    case 9://灰阶
+                        int result = ImageSitB.DesayTestChart_ColorGray(buf);
+                        Thread.Sleep(500);
+                        strout = buf.ToString();
+                        bResult = result == 0 || result == 1;
+                        break;
+                    case 10://色彩
+                        int result1 = ImageSitB.DesayTestChart_ColorGray(buf);
+                        Thread.Sleep(500);
+                        strout = buf.ToString();
+                        bResult = result1 == 0 || result1 == 2;
+                        break;
+                    case 11://视场角
+                        bResult = ImageSitB.DesayTestChart_FOV(buf);
+                        Thread.Sleep(500);
+                        strout = buf.ToString();
+                        break;
+                    case 12://光学中心
+                        bResult = ImageSitB.DesayTestChart_Alignment(buf);
+                        Thread.Sleep(500);
+                        strout = buf.ToString();
+                        break;
+                    case 13://畸变
+                        bResult = ImageSitB.DesayTestChart_Distortion(buf);
+                        Thread.Sleep(500);
+                        strout = buf.ToString();
+                        break;
+                    case 14://SNR
+                        bResult = ImageSitB.DesayTestChart_SNR(buf);
+                        Thread.Sleep(500);
+                        strout = buf.ToString();
+                        break;
+                    case 15://旋转倾斜
+                        bResult = ImageSitB.DesayTestChart_TiltRotation(buf);
+                        Thread.Sleep(500);
+                        strout = buf.ToString();
+                        break;
+                    case 16://帧率
+                        float fps = ImageSitB.DesayTest_GetFPS();
+                        Thread.Sleep(500);
+                        if (fps > Position.Instance.testItem.bFPSMinValue && fps < Position.Instance.testItem.bFPSMaxValue)
+                        {
+                            bResult = true;
+                        }
+                        else
+                        {
+                            bResult = false;
+                        }
+                        strout = fps.ToString();
+                        break;
+                    default:
+                        break;
+                }                
+            }
+            tbResult.Text = strout;
+            if (bResult)
+            {
+                pictureBox1.Image = Image.FromFile(@".\Resources\GreenBall.png");
+            }
+            else
+            {
+                pictureBox1.Image = Image.FromFile(@".\Resources\RedBall.png");
+            }
+        }
+
+        private void combTestItem_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            pictureBox1.Image = Image.FromFile(@".\Resources\Circle - Gray.png");
+        }
+
+        private void radbLeft_CheckedChanged(object sender, EventArgs e)
+        {
+            pictureBox1.Image = Image.FromFile(@".\Resources\Circle - Gray.png");
+        }
+
+        private void radbRight_CheckedChanged(object sender, EventArgs e)
+        {
+            pictureBox1.Image = Image.FromFile(@".\Resources\Circle - Gray.png");
         }
     }
 }
