@@ -1896,26 +1896,7 @@ namespace P072G3A_FuncTest
                                 Thread.Sleep(Config.Instance.bDelayTimeValue);
                                 if (IoPoints.TDI15.Value)
                                 {
-                                    appendText("左工位：开始测试图卡");
-                                    if ((bLeftTotalResult || Position.Instance.testItem.bAllTestEN) && Position.Instance.testItem.bMTFEN)
-                                    {
-                                        StringBuilder buf = new StringBuilder(6072);//指定的buf大小必须大于传入的字符长度
-                                        bLeftResult = ImageSitA.DesayTestChart_SFR(buf);
-                                        Thread.Sleep(500);
-                                        string strout = buf.ToString();
-                                        appendText(strout);
-                                        if (!bLeftResult)
-                                        {
-                                            leftSZErrorCode = ("MTF Error");
-                                            if (bLeftTotalResult)
-                                            {
-                                                Position.Instance.ItemCount.bMTFEN++;
-                                            }
-                                        }
-                                        appendText("左工位：MTF测试结束");
-                                        bLeftTotalResult = bLeftTotalResult & bLeftResult;
-                                        changePicBoxImg("MTFPicBoxA", bLeftResult);
-                                    }
+                                    appendText("左工位：开始测试图卡");                                    
                                     if ((bLeftTotalResult || Position.Instance.testItem.bAllTestEN) && Position.Instance.testItem.bIRMTFEN)
                                     {
                                         StringBuilder buf = new StringBuilder(6072);//指定的buf大小必须大于传入的字符长度
@@ -2179,6 +2160,26 @@ namespace P072G3A_FuncTest
                                         appendText("左工位：切换测试结束");
                                         bLeftTotalResult = bLeftTotalResult & bLeftResult;
                                         changePicBoxImg("ChangeViewPicBoxA", bLeftResult);
+                                    }
+                                    if ((bLeftTotalResult || Position.Instance.testItem.bAllTestEN) && Position.Instance.testItem.bMTFEN)
+                                    {
+                                        StringBuilder buf = new StringBuilder(6072);
+                                        bLeftResult = ImageSitA.DesayTestChart_SFR(buf);
+                                        Thread.Sleep(500);
+                                        string strout = buf.ToString();
+                                        appendText(strout);
+                                        if (!bLeftResult)
+                                        {
+                                            leftSZErrorCode = ("MTF Error");
+                                            if (bLeftTotalResult)
+                                            {
+                                                Position.Instance.ItemCount.bMTFEN++;
+                                            }
+                                        }
+                                        ImageSitA.StopCamera();
+                                        appendText("左工位：MTF测试结束");
+                                        bLeftTotalResult = bLeftTotalResult & bLeftResult;
+                                        changePicBoxImg("MTFPicBoxA", bLeftResult);
                                     }
                                     appendText("左工位：图卡测试结束");
                                     leftTestProcess = 300;
@@ -2621,26 +2622,7 @@ namespace P072G3A_FuncTest
                                 Thread.Sleep(Config.Instance.bDelayTimeValue);
                                 if (IoPoints.IDI2.Value)
                                 {
-                                    appendText("右工位：开始测试图卡");
-                                    if ((bRightTotalResult || Position.Instance.testItem.bAllTestEN) && Position.Instance.testItem.bMTFEN)
-                                    {
-                                        StringBuilder buf = new StringBuilder(6072);//指定的buf大小必须大于传入的字符长度
-                                        bRightResult = ImageSitB.DesayTestChart_SFR(buf);
-                                        Thread.Sleep(500);
-                                        string strout = buf.ToString();
-                                        appendText(strout);
-                                        if (!bRightResult)
-                                        {
-                                            rightSZErrorCode = ("MTF Error");
-                                            if (bRightTotalResult)
-                                            {
-                                                Position.Instance.ItemCount1.bMTFEN++;
-                                            }
-                                        }
-                                        appendText("右工位：MTF测试结束");
-                                        bRightTotalResult = bRightTotalResult & bRightResult;
-                                        changePicBoxImg("MTFPicBoxB", bRightResult);
-                                    }
+                                    appendText("右工位：开始测试图卡");                                    
                                     if ((bRightTotalResult || Position.Instance.testItem.bAllTestEN) && Position.Instance.testItem.bIRMTFEN)
                                     {
                                         StringBuilder buf = new StringBuilder(6072);//指定的buf大小必须大于传入的字符长度
@@ -2904,6 +2886,26 @@ namespace P072G3A_FuncTest
                                         appendText("右工位：切换测试结束");
                                         bRightTotalResult = bRightTotalResult & bRightResult;
                                         changePicBoxImg("ChangeViewPicBoxB", bRightResult);
+                                    }
+                                    if ((bRightTotalResult || Position.Instance.testItem.bAllTestEN) && Position.Instance.testItem.bMTFEN)
+                                    {
+                                        StringBuilder buf = new StringBuilder(6072);
+                                        bRightResult = ImageSitB.DesayTestChart_SFR(buf);
+                                        Thread.Sleep(500);
+                                        string strout = buf.ToString();
+                                        appendText(strout);
+                                        if (!bRightResult)
+                                        {
+                                            rightSZErrorCode = ("MTF Error");
+                                            if (bRightTotalResult)
+                                            {
+                                                Position.Instance.ItemCount1.bMTFEN++;
+                                            }
+                                        }
+                                        ImageSitB.StopCamera();
+                                        appendText("右工位：MTF测试结束");
+                                        bRightTotalResult = bRightTotalResult & bRightResult;
+                                        changePicBoxImg("MTFPicBoxB", bRightResult);
                                     }
                                     appendText("右工位：图卡测试结束");
                                     rightTestProcess = 300;
