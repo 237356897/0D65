@@ -1,5 +1,6 @@
 ﻿using CommonLibrary;
 using desay.ProductData;
+using Image_Sitenamespace;
 using System;
 using System.Drawing;
 using System.IO.Ports;
@@ -29,11 +30,11 @@ namespace P072G3A_FuncTest
         public delegate void ReadIRCurrentAHandler();
         public ReadIRCurrentAHandler readIRCurrentAHandle = null;
 
-      
+
         public frmSystemSetting()
         {
             InitializeComponent();
-            loadConfigParamForCurrentATest();          
+            loadConfigParamForCurrentATest();
         }
 
         private void frmSystemSetting_Load(object sender, EventArgs e)
@@ -67,7 +68,7 @@ namespace P072G3A_FuncTest
             RotationCheckBox.Checked = Position.Instance.testItem.bRotationEN;
             HotPixelCheckBox.Checked = Position.Instance.testItem.bHotPixelEN;
             ChangeViewCheckBox.Checked = Position.Instance.testItem.bChangeViewEN;
-           
+
             #endregion
 
             #region 参数设置
@@ -152,8 +153,8 @@ namespace P072G3A_FuncTest
             Position.Instance.testItem.bMTF_Test = !chkMTFTest.Checked;
             #endregion
 
-            SerializerManager<Config>.Instance.Save(AppConfig.ConfigPath,Config.Instance);
-            SerializerManager<Position>.Instance.Save(Marking.PositionPath,Position.Instance);
+            SerializerManager<Config>.Instance.Save(AppConfig.ConfigPath, Config.Instance);
+            SerializerManager<Position>.Instance.Save(Marking.PositionPath, Position.Instance);
             MessageBox.Show("数据保存成功");
         }
 
@@ -414,7 +415,36 @@ namespace P072G3A_FuncTest
             but.Enabled = true;
         }
 
+
+
         #endregion
 
+        private void btnLeftInfrared_Click(object sender, EventArgs e)
+        {
+            if (btnLeftInfrared.Text == "左红外灯开")
+            {
+                btnLeftInfrared.Text = "左红外灯关";
+                ImageSitA.IR_LED_ON();
+            }
+            else
+            {
+                btnLeftInfrared.Text = "左红外灯开";
+                ImageSitA.IR_LED_OFF();
+            }
+        }
+
+        private void btnRightInfrared_Click(object sender, EventArgs e)
+        {
+            if (btnRightInfrared.Text == "右红外灯开")
+            {
+                btnRightInfrared.Text = "右红外灯关";
+                ImageSitB.IR_LED_ON();
+            }
+            else
+            {
+                btnRightInfrared.Text = "右红外灯开";
+                ImageSitB.IR_LED_OFF();
+            }
+        }
     }
 }

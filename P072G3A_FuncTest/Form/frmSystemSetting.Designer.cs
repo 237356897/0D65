@@ -41,13 +41,17 @@
             this.checkBoxNoSafetyDoor = new System.Windows.Forms.CheckBox();
             this.checkBoxRunMode = new System.Windows.Forms.CheckBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.AllTestCheckBox = new System.Windows.Forms.CheckBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.btnRightInfrared = new System.Windows.Forms.Button();
+            this.btnLeftInfrared = new System.Windows.Forms.Button();
             this.closeWhiteLightControl = new System.Windows.Forms.Button();
             this.openWhiteLightControl = new System.Windows.Forms.Button();
             this.setTo940nm = new System.Windows.Forms.Button();
             this.setToVisibleLight = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.InfraredDarkCheckBox = new System.Windows.Forms.CheckBox();
             this.DelayTimeTextBox = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.FPSMaxTextBox = new System.Windows.Forms.TextBox();
@@ -65,7 +69,6 @@
             this.CurrentMaxTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.CurrentMinTextBox = new System.Windows.Forms.TextBox();
-            this.AllTestCheckBox = new System.Windows.Forms.CheckBox();
             this.PowCheckBox = new System.Windows.Forms.CheckBox();
             this.button1 = new System.Windows.Forms.Button();
             this.FWCheckBox = new System.Windows.Forms.CheckBox();
@@ -87,7 +90,6 @@
             this.IRMTFcheckBox = new System.Windows.Forms.CheckBox();
             this.WhiteBlaceCheckBox = new System.Windows.Forms.CheckBox();
             this.BlemishCheckBox = new System.Windows.Forms.CheckBox();
-            this.InfraredDarkCheckBox = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -234,6 +236,16 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "其他设置：";
             // 
+            // AllTestCheckBox
+            // 
+            this.AllTestCheckBox.AutoSize = true;
+            this.AllTestCheckBox.Location = new System.Drawing.Point(103, 24);
+            this.AllTestCheckBox.Name = "AllTestCheckBox";
+            this.AllTestCheckBox.Size = new System.Drawing.Size(72, 16);
+            this.AllTestCheckBox.TabIndex = 17;
+            this.AllTestCheckBox.Text = "测试所有";
+            this.AllTestCheckBox.UseVisualStyleBackColor = true;
+            // 
             // timer1
             // 
             this.timer1.Enabled = true;
@@ -241,20 +253,42 @@
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.btnRightInfrared);
+            this.groupBox4.Controls.Add(this.btnLeftInfrared);
             this.groupBox4.Controls.Add(this.closeWhiteLightControl);
             this.groupBox4.Controls.Add(this.openWhiteLightControl);
             this.groupBox4.Controls.Add(this.setTo940nm);
             this.groupBox4.Controls.Add(this.setToVisibleLight);
             this.groupBox4.Location = new System.Drawing.Point(12, 265);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(194, 98);
+            this.groupBox4.Size = new System.Drawing.Size(194, 137);
             this.groupBox4.TabIndex = 11;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "光源切换";
             // 
+            // btnRightInfrared
+            // 
+            this.btnRightInfrared.Location = new System.Drawing.Point(104, 98);
+            this.btnRightInfrared.Name = "btnRightInfrared";
+            this.btnRightInfrared.Size = new System.Drawing.Size(84, 23);
+            this.btnRightInfrared.TabIndex = 4;
+            this.btnRightInfrared.Text = "右红外灯开";
+            this.btnRightInfrared.UseVisualStyleBackColor = true;
+            this.btnRightInfrared.Click += new System.EventHandler(this.btnRightInfrared_Click);
+            // 
+            // btnLeftInfrared
+            // 
+            this.btnLeftInfrared.Location = new System.Drawing.Point(6, 98);
+            this.btnLeftInfrared.Name = "btnLeftInfrared";
+            this.btnLeftInfrared.Size = new System.Drawing.Size(84, 23);
+            this.btnLeftInfrared.TabIndex = 4;
+            this.btnLeftInfrared.Text = "左红外灯开";
+            this.btnLeftInfrared.UseVisualStyleBackColor = true;
+            this.btnLeftInfrared.Click += new System.EventHandler(this.btnLeftInfrared_Click);
+            // 
             // closeWhiteLightControl
             // 
-            this.closeWhiteLightControl.Location = new System.Drawing.Point(104, 60);
+            this.closeWhiteLightControl.Location = new System.Drawing.Point(104, 62);
             this.closeWhiteLightControl.Name = "closeWhiteLightControl";
             this.closeWhiteLightControl.Size = new System.Drawing.Size(83, 23);
             this.closeWhiteLightControl.TabIndex = 3;
@@ -264,17 +298,17 @@
             // 
             // openWhiteLightControl
             // 
-            this.openWhiteLightControl.Location = new System.Drawing.Point(6, 60);
+            this.openWhiteLightControl.Location = new System.Drawing.Point(6, 62);
             this.openWhiteLightControl.Name = "openWhiteLightControl";
-            this.openWhiteLightControl.Size = new System.Drawing.Size(91, 23);
+            this.openWhiteLightControl.Size = new System.Drawing.Size(84, 23);
             this.openWhiteLightControl.TabIndex = 2;
-            this.openWhiteLightControl.Text = "白场光源打开";
+            this.openWhiteLightControl.Text = "白场光源开";
             this.openWhiteLightControl.UseVisualStyleBackColor = true;
             this.openWhiteLightControl.Click += new System.EventHandler(this.openWhiteLightControl_Click);
             // 
             // setTo940nm
             // 
-            this.setTo940nm.Location = new System.Drawing.Point(103, 19);
+            this.setTo940nm.Location = new System.Drawing.Point(103, 26);
             this.setTo940nm.Name = "setTo940nm";
             this.setTo940nm.Size = new System.Drawing.Size(84, 23);
             this.setTo940nm.TabIndex = 1;
@@ -284,9 +318,9 @@
             // 
             // setToVisibleLight
             // 
-            this.setToVisibleLight.Location = new System.Drawing.Point(6, 20);
+            this.setToVisibleLight.Location = new System.Drawing.Point(6, 26);
             this.setToVisibleLight.Name = "setToVisibleLight";
-            this.setToVisibleLight.Size = new System.Drawing.Size(91, 23);
+            this.setToVisibleLight.Size = new System.Drawing.Size(84, 23);
             this.setToVisibleLight.TabIndex = 0;
             this.setToVisibleLight.Text = "可见光";
             this.setToVisibleLight.UseVisualStyleBackColor = true;
@@ -335,10 +369,20 @@
             this.groupBox3.Controls.Add(this.BlemishCheckBox);
             this.groupBox3.Location = new System.Drawing.Point(212, 12);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(655, 351);
+            this.groupBox3.Size = new System.Drawing.Size(655, 390);
             this.groupBox3.TabIndex = 12;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "FW Fersion";
+            // 
+            // InfraredDarkCheckBox
+            // 
+            this.InfraredDarkCheckBox.AutoSize = true;
+            this.InfraredDarkCheckBox.Location = new System.Drawing.Point(25, 300);
+            this.InfraredDarkCheckBox.Name = "InfraredDarkCheckBox";
+            this.InfraredDarkCheckBox.Size = new System.Drawing.Size(96, 16);
+            this.InfraredDarkCheckBox.TabIndex = 39;
+            this.InfraredDarkCheckBox.Text = "黑场红外测试";
+            this.InfraredDarkCheckBox.UseVisualStyleBackColor = true;
             // 
             // DelayTimeTextBox
             // 
@@ -475,16 +519,6 @@
             this.CurrentMinTextBox.Size = new System.Drawing.Size(42, 21);
             this.CurrentMinTextBox.TabIndex = 18;
             // 
-            // AllTestCheckBox
-            // 
-            this.AllTestCheckBox.AutoSize = true;
-            this.AllTestCheckBox.Location = new System.Drawing.Point(103, 24);
-            this.AllTestCheckBox.Name = "AllTestCheckBox";
-            this.AllTestCheckBox.Size = new System.Drawing.Size(72, 16);
-            this.AllTestCheckBox.TabIndex = 17;
-            this.AllTestCheckBox.Text = "测试所有";
-            this.AllTestCheckBox.UseVisualStyleBackColor = true;
-            // 
             // PowCheckBox
             // 
             this.PowCheckBox.AutoSize = true;
@@ -497,9 +531,10 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(328, 322);
+            this.button1.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.button1.Location = new System.Drawing.Point(278, 345);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(100, 23);
+            this.button1.Size = new System.Drawing.Size(134, 39);
             this.button1.TabIndex = 15;
             this.button1.Text = "保存";
             this.button1.UseVisualStyleBackColor = true;
@@ -695,16 +730,6 @@
             this.BlemishCheckBox.Text = "脏污";
             this.BlemishCheckBox.UseVisualStyleBackColor = true;
             // 
-            // InfraredDarkCheckBox
-            // 
-            this.InfraredDarkCheckBox.AutoSize = true;
-            this.InfraredDarkCheckBox.Location = new System.Drawing.Point(25, 300);
-            this.InfraredDarkCheckBox.Name = "InfraredDarkCheckBox";
-            this.InfraredDarkCheckBox.Size = new System.Drawing.Size(96, 16);
-            this.InfraredDarkCheckBox.TabIndex = 39;
-            this.InfraredDarkCheckBox.Text = "黑场红外测试";
-            this.InfraredDarkCheckBox.UseVisualStyleBackColor = true;
-            // 
             // frmSystemSetting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -789,5 +814,7 @@
         private System.Windows.Forms.CheckBox chkDarkTest;
         private System.Windows.Forms.CheckBox chkNGbox;
         private System.Windows.Forms.CheckBox InfraredDarkCheckBox;
+        private System.Windows.Forms.Button btnRightInfrared;
+        private System.Windows.Forms.Button btnLeftInfrared;
     }
 }

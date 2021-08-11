@@ -1851,7 +1851,7 @@ namespace P072G3A_FuncTest
                             {
                                 Thread.Sleep(100);
                                 leftTestProcess = 210;
-                                ComPort7.BeginTrigger2("02 03 00 08 00 04 C5 F8");//发送读取电流的命令
+                                //ComPort7.BeginTrigger2("02 03 00 08 00 04 C5 F8");//发送读取电流的命令
                             }
                             break;
 
@@ -1893,6 +1893,15 @@ namespace P072G3A_FuncTest
                         case 260://左通道平移气缸伸出感应
                             if (IoPoints.TDI15.Value)
                             {
+                                if (Position.Instance.testItem.bInfraredDarkEN)
+                                {
+                                    ImageSitA.IR_LED_ON();
+                                    Thread.Sleep(500);
+                                    ComPort7.BeginTrigger2("02 03 00 08 00 04 C5 F8");//发送读取电流的命令
+                                    Thread.Sleep(500);
+                                    ImageSitA.IR_LED_OFF();
+                                }
+
                                 Thread.Sleep(Config.Instance.bDelayTimeValue);
                                 if (IoPoints.TDI15.Value)
                                 {
@@ -2577,7 +2586,7 @@ namespace P072G3A_FuncTest
                             {
                                 Thread.Sleep(100);
                                 rightTestProcess = 210;
-                                ComPort7.BeginTrigger2("02 03 00 08 00 04 C5 F8");//发送读取电流的命令
+                                //ComPort7.BeginTrigger2("02 03 00 08 00 04 C5 F8");//发送读取电流的命令
                             }
                             break;
 
@@ -2619,6 +2628,15 @@ namespace P072G3A_FuncTest
                         case 260://右通道平移气缸伸出感应
                             if (IoPoints.IDI2.Value)
                             {
+                                if (Position.Instance.testItem.bInfraredDarkEN)
+                                {
+                                    ImageSitB.IR_LED_ON();
+                                    Thread.Sleep(500);
+                                    ComPort7.BeginTrigger2("02 03 00 08 00 04 C5 F8");//发送读取电流的命令
+                                    Thread.Sleep(500);
+                                    ImageSitB.IR_LED_OFF();
+                                }
+
                                 Thread.Sleep(Config.Instance.bDelayTimeValue);
                                 if (IoPoints.IDI2.Value)
                                 {
@@ -4193,8 +4211,8 @@ namespace P072G3A_FuncTest
         public double getCurrentAValueWithStr(string str)
         {
             int dataNum = System.Convert.ToInt32(str, 16);
-            float temp = (float)dataNum / 50000;
-            Double currentA = (Double)temp * 0.2 * 1000;
+            float temp = (float)dataNum / 10000;
+            Double currentA = (Double)temp * 5 * 1000;
             currentA = Math.Round(currentA, 2);
             return currentA;
         }

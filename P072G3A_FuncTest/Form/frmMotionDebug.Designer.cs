@@ -836,22 +836,22 @@
             this.combTestItem.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.combTestItem.FormattingEnabled = true;
             this.combTestItem.Items.AddRange(new object[] {
-            "IR清晰度",
-            "Shading",
-            "SNR",
             "暗板",
-            "白平衡",
-            "光学中心",
             "黑场红外",
+            "白平衡",
+            "Shading",
+            "脏污",
             "坏点",
-            "灰阶",
-            "畸变",
             "亮点",
             "清晰度",
+            "IR清晰度",
+            "灰阶",
             "色彩",
             "视场角",
+            "光学中心",
+            "畸变",
+            "SNR",
             "旋转倾斜",
-            "脏污",
             "帧率"});
             this.combTestItem.Location = new System.Drawing.Point(10, 20);
             this.combTestItem.Name = "combTestItem";
